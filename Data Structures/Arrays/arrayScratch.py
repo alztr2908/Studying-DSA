@@ -50,26 +50,34 @@ class Array:
     def insert(self, val, k):
         if not 0 <= k <= self.length:
             return IndexError('K is out of bounds!')
-        
+
         if self.length >= self.capacity:
             self.capacity *= 2
             new_arr = self._make_array(self.capacity)
-            
+
             for i in range(k):
                 new_arr[i] = self.arr[i]
 
-            for i in range(self.length, k, -1):
+            new_arr[k] = val
+
+            for i in range(k + 1, self.length + 1):
                 new_arr[i] = self.arr[i - 1]
 
             self.arr = new_arr
-        
-        self.arr[k] = val
+
+        else:
+            for i in range(self.length, k, -1):
+                self.arr[i] = self.arr[i - 1]
+
+            self.arr[k] = val
+
         self.length += 1
 
     def _make_array(self,new_cap):
         return (new_cap * ctypes.py_object)()
 
     def __iter__(self):
+        print(self.length)
         for i in range(self.length):
             yield self.arr[i]
    
@@ -86,8 +94,12 @@ def main():
     print(f'index 2 of array: {arr[2]}')
 
     arr.insert(2,2)
-    arr.insert(100,5)
-
+    arr.insert(100,4)
+    # arr.insert(100,5)
+    # arr.insert(100,5)
+    # arr.insert(100,5)
+    # arr.insert(99,5)
+    # arr.insert(210,2)
     # Print values
     for element in arr:
         print(element)
