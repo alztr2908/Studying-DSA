@@ -1,0 +1,67 @@
+Can use the built-in list implementation of python but implemented for learning purposes.
+
+Basic Operations of dynamic array
+
+1. Access -> O(1)
+2. Search -> O(n)
+3. Insert -> O(n)
+4. Append -> O(1)
+5. Deletion -> O(n)
+
+How to make dynamic array
+1. Create a static array with initial capacity
+2. Add elements to the static array (keep track of the number of elements (length of array))
+3. If length > capacity, create a new static array with twice the capacity and copy the original elements into it.
+
+
+Sidenotes:
+
+1. Meaning of underscores in python
+    a. Single Leading Underscore(_var): Naming convention indicating a name is meant for internal use. Generally not enforced by the Python interpreter (except in wildcard imports) and meant as a hint to the programmer only.
+
+        def _resize(self,new_cap):
+        """
+        Resize internal array to capacity new_cap
+        """
+         
+        B = self.make_array(new_cap) # New bigger array
+         
+        for k in range(self.n): # Reference all existing values
+            B[k] = self.A[k]
+             
+        self.A = B # Call A the fresh array
+        self.capacity = new_cap # Reset the capacity
+
+    b. Single Trailing Underscore(var_): Used by convention to avoid naming conflicts with Python keywords.
+
+        num_input = int(input())
+
+    c. Double Leading Underscore(__var): Triggers name mangling when used in a class context. Enforced by the Python interpreter.
+    d. Double Leading and Trailing Underscore(__var__): Indicates special methods defined by the Python language. Avoid this naming scheme for your own attributes.
+        
+        def __str__(self):
+            return f'{self.name}: {self.age}'
+
+    e. Single Underscore(_): Sometimes used as a name for temporary or insignificant variables (“don’t care”). Also: The result of the last expression in a Python REPL.
+
+        for _ in arr:
+            print(arr) //print entire arr (len(arr) times)
+
+2. Create a module 
+    a. Create module 
+    
+    // my_mod.py
+    def greet(name):
+        return f'hello {name}'
+    
+    // main.py
+    import my_mod 
+
+    print(my_mod.greet('Alz')) // output 'hello Alz'
+
+    or 
+
+    // main.py
+    from my_mod import greet 
+
+    print(greet('Alz')) // output 'hello Alz'
