@@ -37,7 +37,9 @@ class Array:
     # Add element in an array
     def append(self,val):
         """
-        Appending the array -> ammortized O(1) 
+        Adding last element on the array -> ammortized O(1)
+
+        O(n) if length > capacity at the appending but it does not happen often 
         """
         if self.length > self.capacity:
             self.capacity = self.length*2
@@ -48,6 +50,9 @@ class Array:
         self.length += 1
     
     def insert(self, val, k):
+        """
+        Adding element on the array on its index -> O(n)
+        """
         if not 0 <= k <= self.length:
             return IndexError('K is out of bounds!')
 
@@ -72,6 +77,14 @@ class Array:
             self.arr[k] = val
 
         self.length += 1
+    
+    def pop(self):
+        """
+        Removing last element on the array -> O(1)
+        """
+        self.arr[self.length] = None
+
+        self.length -= 1
 
     def _make_array(self,new_cap):
         return (new_cap * ctypes.py_object)()
@@ -95,11 +108,13 @@ def main():
 
     arr.insert(2,2)
     arr.insert(100,4)
-    # arr.insert(100,5)
-    # arr.insert(100,5)
-    # arr.insert(100,5)
-    # arr.insert(99,5)
-    # arr.insert(210,2)
+
+    arr.pop()
+    arr.insert(100,5)
+    arr.insert(100,5)
+    arr.insert(100,5)
+    arr.insert(99,5)
+    arr.insert(210,2)
     # Print values
     for element in arr:
         print(element)

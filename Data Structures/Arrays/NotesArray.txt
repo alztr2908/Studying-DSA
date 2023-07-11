@@ -13,6 +13,12 @@ How to make dynamic array
 2. Add elements to the static array (keep track of the number of elements (length of array))
 3. If length > capacity, create a new static array with twice the capacity and copy the original elements into it.
 
+Done:
+-> created access, search, insert, and append methods
+
+To do:
+-> do the delete method
+
 
 Sidenotes:
 
@@ -65,3 +71,30 @@ Sidenotes:
     from my_mod import greet 
 
     print(greet('Alz')) // output 'hello Alz'
+
+
+
+1 2 3 4 5 
+0 1 2 3 4
+
+1 2 2 3 4 5
+0 1 2 3 4 5 
+
+     val k 
+insert(2,2)
+
+1 2 2 4 5
+val = 3
+k += 1 // k = 3
+
+1 2 2 3 5
+val = 4 
+k += 1 // k = 4
+
+1 2 2 3 4
+val = 5
+k += 1 // k = 5
+
+
+
+
