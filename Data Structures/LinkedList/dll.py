@@ -76,6 +76,22 @@ class DoublyLinkedList:
     """
     Delete
     """
+    def removeFirst(self):
+        if self.isEmpty():
+            print(RuntimeError("Empty List"))
+            return
+        
+        value = self.head.value
+        self.head = self.head.next 
+        self.size -= 1
+
+        if self.isEmpty():
+            self.tail = None
+        else:
+            self.head.prev = None
+        
+        print(f'removed {value}')
+        return 
 
     
     """
@@ -125,7 +141,9 @@ e5 = Node(5)
 
 node.add(e2)
 node.add(e3)
-node.add(e4)
 node.addFirst(e1)
+node.clear()
 node.addFirst(e5)
+node.removeFirst()
+node.add(e4)
 node.print()
