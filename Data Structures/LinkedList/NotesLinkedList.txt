@@ -114,3 +114,10 @@ Inserting at middle:
 
    3 -> None
    2 -> 3
+
+deleteAtHead
+    None
+    ht
+
+
+1->2->3->None

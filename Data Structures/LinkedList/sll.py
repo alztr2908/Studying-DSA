@@ -112,7 +112,7 @@ class SingleLinkedList:
     Python have a garbage collector so no worries on deallocating the new node
     """
 
-    def deleteAtHead(self):
+    def removeAtHead(self):
         current = self.head
 
         if current:
@@ -121,10 +121,9 @@ class SingleLinkedList:
 
             self.size -= 1
         else: 
-            print(ValueError("No elements to delete"))
+            print(ValueError("No elements to remove"))
 
-
-    def deleteAtTail(self):
+    def removeAtTail(self):
         current = self.head
 
         if current:
@@ -141,9 +140,46 @@ class SingleLinkedList:
             self.size -= 1
         
         else: 
-            print(ValueError("No elements to delete"))
+            print(ValueError("No elements to remove"))
 
+    def remove(self, k):
+        if k > self.size:
+            print(IndexError('K is out of bounds!'))
+            return
 
+        if k == 0:
+            self.removeAtHead()
+            return
+        
+        elif k == self.size:
+            self.removeAtTail()
+            return
+        
+        else:
+            current1 = self.head
+            curr_idx = 0
+
+            if current1 and current1.next:
+                current2 = current1.next
+
+                while current2 and curr_idx < k-1:
+                    current1 = current2
+                    current2 = current2.next
+                    curr_idx += 1
+                
+                # Assign temporary for deallocation 
+                temp = current2
+
+                # Traverse the second pointer to (n+1)th
+                current2 = current2.next
+                # Place the address of first pointer to the second pointer
+                current1.next = current2
+
+                # Deallocate since temp = current2, placing it earlier will make current2.next be null
+                temp.next = None 
+                
+            self.size -= 1
+                
     def len(self):
         print(f'{self.size}')
 
@@ -187,8 +223,6 @@ node = SingleLinkedList()
 
 # node.insertAtTail(e2)
 # node.insertAtHead(e3)
-# node.insertAtHead(e4)
-# node.insertAtTail(e5)
 
 
 # e7 = Node(7)
@@ -205,8 +239,17 @@ node = SingleLinkedList()
 node.insertAtTail(e1)
 node.print()
 
-# node.deleteAtTail()
-node.deleteAtTail()
+# node.removeAtTail()
+node.insert(e2,1)
+node.removeAtTail()
+node.print()
+
+node.insertAtHead(e2)
+node.insertAtHead(e3)
+node.insertAtHead(e4)
+node.insertAtTail(e5)
+node.len()
+node.remove(1)
 node.print()
 
 # node
