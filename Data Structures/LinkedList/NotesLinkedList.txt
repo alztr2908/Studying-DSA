@@ -56,7 +56,7 @@ Complexity Analysis
         5. Remove at head -> O(1)
         6. Remove at tail -> O(n)
         7. Remove at middle -> O(n)
-    
+
     B. DLL 
         1. Search -> O(n)
         2. Insert at head -> O(1)
@@ -109,5 +109,8 @@ Inserting at middle:
         b. if linked list has no node and want to insert at the correct index which is zero 
     
 
+        c
+   1 -> 2 -> None
 
-   
+   3 -> None
+   2 -> 3

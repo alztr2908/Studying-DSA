@@ -78,6 +78,7 @@ class SingleLinkedList:
             self.insertAtHead(new_node)
             return
         
+        # Insert at TAIL
         elif k == self.size:
             self.insertAtTail(new_node)
             return 
@@ -85,6 +86,7 @@ class SingleLinkedList:
         current = self.head
         curr_idx = 0
 
+        # Insert at middle -> O(n)
         if current:
             # Traverse until (target_idx - 1)th node
             while current.next and curr_idx < k-1:
@@ -96,9 +98,25 @@ class SingleLinkedList:
             new_node.next = current.next
             # 2 next address: 3
             current.next = new_node 
+        
+        self.size += 1
 
+    """
+    Deleting at HEAD -> O(1)
+    Deleting at TAIL -> O(n) 
+        Since no access at the past address on the TAIL, it will be hard to access the previous element of TAIL, hence traverse until the element before TAIL and deallocate TAIL and make the current pointer TAIL
 
-    
+    Deleting at the middle -> O(n)
+        Two traversal pinters (current1 and current2) travel on the linked list and if it reach (n-1)th node, current1 will stay there and current2 will be on the (n+1)th node
+
+    Python have a garbage collector so no worries on deallocating the new node
+    """
+
+    def deleteAtHead(self):
+        current = self.head
+        self.head = current.next 
+        current.next = None
+
     def len(self):
         print(f'{self.size}')
 
@@ -115,17 +133,21 @@ class SingleLinkedList:
 
     def print(self):
         current = self.head
+        print()
+        self.printHEAD()
+        self.printTAIL()
 
         while current:
             print(f'{current.value}',end="->")
             current = current.next
         print("None")
+        print()
 
-# e1 = Node(1)
-# e2 = Node(2)
-# e3 = Node(3)
-# e4 = Node(4)
-# e5 = Node(5)
+e1 = Node(1)
+e2 = Node(2)
+e3 = Node(3)
+e4 = Node(4)
+e5 = Node(5)
 
 node = SingleLinkedList()
 
@@ -142,10 +164,19 @@ node.insert(e7,0)
 node.printHEAD()
 e6 = Node(6)
 node.insert(e6, 3)
-node.printHEAD()
-node.printTAIL()
+node.insert(e5,1)
+node.insert(e4,2)
+node.insertAtHead(e1)
+node.insert(e2,1)
 node.print()
-# node.printTAIL()
+
+node.deleteAtHead()
+node.print()
+
+node.insertAtTail(e1)
+node.print()
+
+# node
 
     
     
