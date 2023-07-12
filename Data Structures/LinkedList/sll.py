@@ -55,13 +55,49 @@ class SingleLinkedList:
         self.size += 1
     
     def insertAtHead(self,new_node=None):
-        current = new_node
+        current = self.head
         
         if current:
-            current.next = self.head
-            self.head = current
+            new_node.next = current
+            self.head = new_node
+    
+        else:
+            self.head = new_node
+            self.tail = new_node         
         
         self.size += 1
+    
+    def insert(self,new_node,k):
+        # If k > size then it will assign to TAIL
+        if k > self.size:
+            print(IndexError('K is out of bounds!'))
+            k = self.size
+
+        # Insert at HEAD
+        if k == 0:
+            self.insertAtHead(new_node)
+            return
+        
+        elif k == self.size:
+            self.insertAtTail(new_node)
+            return 
+
+        current = self.head
+        curr_idx = 0
+
+        if current:
+            # Traverse until (target_idx - 1)th node
+            while current.next and curr_idx < k-1:
+                current = current.next
+                curr_idx += 1
+
+            ###### 1->2->(3)->4 
+            # [in order] 3 next address: 4
+            new_node.next = current.next
+            # 2 next address: 3
+            current.next = new_node 
+
+
     
     def len(self):
         print(f'{self.size}')
@@ -85,27 +121,31 @@ class SingleLinkedList:
             current = current.next
         print("None")
 
-e1 = Node(1)
-e2 = Node(2)
-e3 = Node(3)
-e4 = Node(4)
-e5 = Node(5)
+# e1 = Node(1)
+# e2 = Node(2)
+# e3 = Node(3)
+# e4 = Node(4)
+# e5 = Node(5)
 
 node = SingleLinkedList()
 
-node.insertAtTail(e1)
+# node.insertAtTail(e1)
 
-node.insertAtTail(e2)
-node.insertAtHead(e3)
-node.insertAtHead(e4)
-node.insertAtTail(e5)
+# node.insertAtTail(e2)
+# node.insertAtHead(e3)
+# node.insertAtHead(e4)
+# node.insertAtTail(e5)
 
+
+e7 = Node(7)
+node.insert(e7,0)
+node.printHEAD()
+e6 = Node(6)
+node.insert(e6, 3)
 node.printHEAD()
 node.printTAIL()
-
-node.len()
-
 node.print()
+# node.printTAIL()
 
     
     

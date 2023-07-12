@@ -50,8 +50,8 @@ B. Remove at nth node
 Complexity Analysis
     A. SLL
         1. Search -> O(n)
-        2. Insert at head -> O(1)
-        3. Insert at tail -> O(1)
+        2. Insert at head -> O(1) //
+        3. Insert at tail -> O(1) //insert at tail
         4. Insert at middle -> O(n)
         5. Remove at head -> O(1)
         6. Remove at tail -> O(n)
@@ -72,13 +72,42 @@ Todo
 2. Do the DLL source code from java to python
 
 SLL Implementation
-    1. Append
-    2. Insert 
+    1. Insert at HEAD
+    2. Insert at TAIL
+    3. Insert
     3. Delete
     4. Print
 
 
 Delete
 
-1 -> 2 -> 3 -> 4 
+None
+ht
+head == tail
 
+
+1 
+ht
+Insert at head (2)
+
+2 -> 1
+h    t
+
+1 
+ht
+Insert at tail (2)
+
+Inserting at middle:
+    1->2->4
+    val: 3 ; target_idx: 2
+        a. if curr_idx == (target_idx - 1) -> 2
+        b. new_node next address: 4
+        c. curr_idx next address: 3
+    
+    EDGE CASE:
+        a. if target_idx > length of linked list 
+        b. if linked list has no node and want to insert at the correct index which is zero 
+    
+
+
+   
