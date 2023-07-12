@@ -114,8 +114,35 @@ class SingleLinkedList:
 
     def deleteAtHead(self):
         current = self.head
-        self.head = current.next 
-        current.next = None
+
+        if current:
+            self.head = current.next 
+            current.next = None
+
+            self.size -= 1
+        else: 
+            print(ValueError("No elements to delete"))
+
+
+    def deleteAtTail(self):
+        current = self.head
+
+        if current:
+            while current.next != self.tail and current.next != None:
+                current = current.next
+            
+            current.next = None
+            self.tail = current
+
+            if self.size == 1:
+                self.head = None
+                self.tail = None
+
+            self.size -= 1
+        
+        else: 
+            print(ValueError("No elements to delete"))
+
 
     def len(self):
         print(f'{self.size}')
@@ -126,14 +153,19 @@ class SingleLinkedList:
     Printing the entire SLL -> O(n)
     """
     def printHEAD(self):
+        if not self.head:
+            return print(ValueError("No element in HEAD"))
+        
         print(f'HEAD: {self.head.value}')
 
     def printTAIL(self):
+        if not self.head:
+            return print(ValueError("No element in TAIL"))
+        
         print(f'TAIL: {self.tail.value}')
 
     def print(self):
         current = self.head
-        print()
         self.printHEAD()
         self.printTAIL()
 
@@ -159,24 +191,25 @@ node = SingleLinkedList()
 # node.insertAtTail(e5)
 
 
-e7 = Node(7)
-node.insert(e7,0)
-node.printHEAD()
-e6 = Node(6)
-node.insert(e6, 3)
-node.insert(e5,1)
-node.insert(e4,2)
-node.insertAtHead(e1)
-node.insert(e2,1)
-node.print()
-
-node.deleteAtHead()
-node.print()
+# e7 = Node(7)
+# node.insert(e7,0)
+# node.printHEAD()
+# e6 = Node(6)
+# node.insert(e6, 3)
+# node.insert(e5,1)
+# node.insert(e4,2)
+# node.insertAtHead(e1)
+# node.insert(e2,1)
+# node.print()
 
 node.insertAtTail(e1)
 node.print()
 
+# node.deleteAtTail()
+node.deleteAtTail()
+node.print()
+
 # node
 
-    
+
     
