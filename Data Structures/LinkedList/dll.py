@@ -62,6 +62,17 @@ class DoublyLinkedList:
         
         self.size += 1
 
+    # Add an element to the beginning of this linked list, O(1)
+    def addFirst(self, new_node):
+        if self.isEmpty():
+            self.head = self.tail = new_node
+        else:
+            self.head.prev = new_node
+            new_node.next = self.head
+            self.head = self.head.prev
+        
+        self.size += 1
+        
     """
     Delete
     """
@@ -93,7 +104,6 @@ class DoublyLinkedList:
             print(f'{current.value}',end="<=>")
             current = current.next
         print("None")
-        print()
         
         # Print in descending order
         print("Print from TAIL to HEAD")
@@ -116,4 +126,6 @@ e5 = Node(5)
 node.add(e2)
 node.add(e3)
 node.add(e4)
+node.addFirst(e1)
+node.addFirst(e5)
 node.print()
