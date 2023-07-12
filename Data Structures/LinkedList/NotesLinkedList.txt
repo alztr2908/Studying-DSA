@@ -52,17 +52,19 @@ Complexity Analysis
         1. Search -> O(n)
         2. Insert at head -> O(1)
         3. Insert at tail -> O(1)
-        4. Remove at head -> O(1)
-        5. Remove at tail -> O(n)
-        6. Remove at middle -> O(n)
+        4. Insert at middle -> O(n)
+        5. Remove at head -> O(1)
+        6. Remove at tail -> O(n)
+        7. Remove at middle -> O(n)
     
     B. DLL 
         1. Search -> O(n)
         2. Insert at head -> O(1)
         3. Insert at tail -> O(1)
-        4. Remove at head -> O(1)
-        5. Remove at tail -> O(1)
-        6. Remove at middle -> O(n)
+        4. Insert at middle -> O(n)
+        5. Remove at head -> O(1)
+        6. Remove at tail -> O(1)
+        7. Remove at middle -> O(n)
 
 Todo
 
@@ -75,4 +77,8 @@ SLL Implementation
     3. Delete
     4. Print
 
-    
+
+Delete
+
+1 -> 2 -> 3 -> 4 
+
