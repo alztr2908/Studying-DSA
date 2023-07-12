@@ -120,4 +120,9 @@ deleteAtHead
     ht
 
 
-1->2->3->None
+delete:
+    1->2->3->4
+    h        t
+    At k == head
+    At k ==tail
+    At m

@@ -111,7 +111,6 @@ class SingleLinkedList:
 
     Python have a garbage collector so no worries on deallocating the new node
     """
-
     def removeAtHead(self):
         current = self.head
 
@@ -177,7 +176,7 @@ class SingleLinkedList:
 
                 # Deallocate since temp = current2, placing it earlier will make current2.next be null
                 temp.next = None 
-                
+
             self.size -= 1
                 
     def len(self):
@@ -248,7 +247,6 @@ node.insertAtHead(e2)
 node.insertAtHead(e3)
 node.insertAtHead(e4)
 node.insertAtTail(e5)
-node.len()
 node.remove(1)
 node.print()
 
