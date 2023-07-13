@@ -124,7 +124,7 @@ class DoublyLinkedList:
         return
 
     # Remove an arbitrary node from the linked list, O(1)
-    def remove(self, node):
+    def __remove(self, node):
         # print(node.prev.value)
         # print(node.next.value)
         # If the node to remove is somewhere either at the
@@ -174,10 +174,28 @@ class DoublyLinkedList:
                 current = current.prev
                 curr_idx -= 1
         
-        self.remove(current)
+        self.__remove(current)
         return
 
-    
+    # Remove a particular value in the linked list, O(n)
+    def remove(self, new_node):
+        current = self.head
+
+        if new_node == None:
+            while current != None:
+                current = current.next
+                if current.data is None:
+                    self.__remove(current)
+                    return print(f'Removed {current.value}')
+        else:
+            while current != None:
+                if new_node.value == current.value and new_node.prev == current.prev and new_node.next == current.next:
+                    self.__remove(current)
+                    return print(f'Removed {current.value}')
+                current = current.next
+        
+        return print(f'Nothing to remove')
+
     """
     Print
     """
@@ -231,8 +249,10 @@ node.add(e4)
 node.removeFirst()
 node.add(e2)
 node.addFirst(e5)
-node.removeAt(1)
+# node.removeAt(1)
+node.remove(e1)
 node.add(e3)
 # print(node.len())
 node.removeAt(2)
+# print(e3.prev.value)
 node.print()
