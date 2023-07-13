@@ -1,0 +1,19 @@
+Stack: one-ended linear data structure which models a real world stack by having two primary operations: push and pop. 
+
+There is a top pointer that tracks and can be manipulated by push and pop operations
+
+LIFO: Last In, First Out
+
+When and where is a stack used?
+    - used by undo mechanisms in text editors
+    - used in compiler syntax checking for matching brackets and braces
+    - can be used to model a pile of books or plates
+    - used behind the scenes to support recursion by keeping track of previous function calls
+    - can be used to do a DFS on a graph
+
+Complexity of operations:
+    - pushing => O(1)
+    - popping => O(1)
+    - peeking => O(1)
+    - searching => O(n)
+    - size => O(1)
