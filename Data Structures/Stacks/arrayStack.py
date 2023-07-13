@@ -21,3 +21,39 @@ class arrayStack:
     def isEmpty(self):
         if self.__isEmpty():
             return print("Empty stack")
+
+        return print("NOT empty stack")
+    
+    """
+    Push
+    """
+    def push(self, value):
+        self.stack.append(value)
+        self.head = value
+
+    """
+    Pop
+    """
+    def pop(self):
+        if self.__isEmpty():
+            return print(RuntimeError("Empty stack"))
+        
+        self.stack.pop()
+        self.head = self.stack[-1]
+
+    """
+    Print
+    """
+    def print(self):
+        return print(f'Stack: {self.stack}')
+
+node = arrayStack()
+
+node.push(1)
+node.push(2)
+node.push(3)
+node.push(4)
+node.pop()
+
+node.print()
+node.peek()
