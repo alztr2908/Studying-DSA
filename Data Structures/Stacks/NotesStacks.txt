@@ -17,3 +17,10 @@ Complexity of operations:
     - peeking => O(1)
     - searching => O(n)
     - size => O(1)
+
+sllStack methods:
+    - size
+    - isEmpty
+    - push
+    - pop
+    - peek
