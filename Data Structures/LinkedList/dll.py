@@ -44,6 +44,26 @@ class DoublyLinkedList:
     def isEmpty(self):
         return self.size == 0
 
+    def indexOf(self, new_node):
+        index = 0
+        current = self.head
+
+        # Support searching for null
+        if new_node is None:
+            while current != none:
+                if current.data is None:
+                    return print(f'Node index: {index}')
+                current = current.next
+                index += 1
+        else:
+            while current != None:
+                if new_node.value == current.value and new_node.prev == current.prev and new_node.next == current.next:
+                    return print(f'Node index of {new_node.value}: {index}')
+                current = current.next
+                index += 1
+        
+        return print(f'No index found')
+
     """
     Append
     """
@@ -180,13 +200,15 @@ class DoublyLinkedList:
     # Remove a particular value in the linked list, O(n)
     def remove(self, new_node):
         current = self.head
-
+        
+        # Support searching for null
         if new_node == None:
             while current != None:
-                current = current.next
                 if current.data is None:
                     self.__remove(current)
                     return print(f'Removed {current.value}')
+                current = current.next
+        # Search for non null object    
         else:
             while current != None:
                 if new_node.value == current.value and new_node.prev == current.prev and new_node.next == current.next:
@@ -203,13 +225,13 @@ class DoublyLinkedList:
         if not self.head:
             return print(ValueError("No element in HEAD"))
         
-        print(f'HEAD: {self.head.value}')
+        print(f'HEAD: {self.head.value} | index: 0')
 
     def printTAIL(self):
         if not self.head:
             return print(ValueError("No element in TAIL"))
         
-        print(f'TAIL: {self.tail.value}')
+        print(f'TAIL: {self.tail.value} | index: {self.size-1}')
 
     def print(self):
         self.printHEAD()
@@ -253,6 +275,7 @@ node.addFirst(e5)
 node.remove(e1)
 node.add(e3)
 # print(node.len())
-node.removeAt(2)
+# node.removeAt(2)
 # print(e3.prev.value)
+node.indexOf(e3)
 node.print()
