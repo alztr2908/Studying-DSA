@@ -37,7 +37,7 @@ class DoublyLinkedList:
         self.size = 0
 
     # Return the size of this linked list
-    def size(self):
+    def len(self):
         return self.size
 
     # Is this linked list empty?
@@ -58,7 +58,7 @@ class DoublyLinkedList:
         else:
             self.tail.next = new_node
             new_node.prev = self.tail
-            self.tail = self.tail.next 
+            self.tail = new_node
         
         self.size += 1
 
@@ -69,29 +69,113 @@ class DoublyLinkedList:
         else:
             self.head.prev = new_node
             new_node.next = self.head
-            self.head = self.head.prev
+            self.head = new_node
         
         self.size += 1
         
     """
     Delete
     """
+    # Remove the first value at the head of the linked list, O(1)
     def removeFirst(self):
+        # Can't remove data from an empty list
         if self.isEmpty():
             print(RuntimeError("Empty List"))
             return
         
+        # Extract the data at the head and move
+        # the head pointer forwards one node
         value = self.head.value
         self.head = self.head.next 
         self.size -= 1
 
+        # If the list is empty set the tail to null
         if self.isEmpty():
             self.tail = None
+        # Do a memory cleanup of the previous node
         else:
             self.head.prev = None
         
+        # Return the data that was at the first node we just removed
         print(f'removed {value}')
         return 
+
+    # Remove the last value at the tail of the linked list, O(1)
+    def removeLast(self):
+        # Can't remove data from an empty list
+        if self.isEmpty():
+            print(RuntimeError("Empty List"))
+            return
+        
+        # Extract the data at the tail and move
+        # the tail pointer backwards one node
+        value = self.tail.value
+        self.tail = self.tail.prev
+        self.size -= 1
+
+        # If the list is now empty set the head to null
+        if self.isEmpty():
+            self.head = None
+        # Do a memory clean of the node that was just removed
+        else:
+            self.tail.next = None
+        
+        # Return the data that was in the last node we just removed
+        return
+
+    # Remove an arbitrary node from the linked list, O(1)
+    def remove(self, node):
+        # print(node.prev.value)
+        # print(node.next.value)
+        # If the node to remove is somewhere either at the
+        # head or the tail handle those independently
+        if node.prev == None:
+            self.removeFirst()
+            return
+        if node.next == None:
+            self.removeLast()
+            return 
+        
+        # 1<=>2<=>3 to 1<=>3
+        # Make the pointers of adjacent nodes skip over 'node'
+        node.next.prev = node.prev
+        node.prev.next = node.next
+        # Temporarily store the data we want to return
+        value = node.value
+
+        # Memory cleanup
+        node.value = None
+        node.prev = node.next = None
+        node = None
+        self.size -= 1
+
+        # Return the data in the node we just removed
+        print(f'removed {value}')
+        return 
+
+    # Remove a node at a particular index, O(n)
+    def removeAt(self,k=0):
+        # Make sure the index provided is valid
+        if (k < 0 or k >= self.size):
+            print(IndexError(f'Index {k} is out of bounds!'))
+            return 
+        
+        # Search from the front of the list
+        if (k < self.size // 2):
+            current = self.head
+            curr_idx = 0
+            while curr_idx != k:
+                current = current.next
+                curr_idx += 1
+        else:
+            current = self.tail
+            curr_idx = self.size
+            while curr_idx != k:
+                current = current.prev
+                curr_idx -= 1
+        
+        self.remove(current)
+        return
 
     
     """
@@ -139,11 +223,16 @@ e3 = Node(3)
 e4 = Node(4)
 e5 = Node(5)
 
-node.add(e2)
-node.add(e3)
-node.addFirst(e1)
 node.clear()
-node.addFirst(e5)
-node.removeFirst()
+
+node.addFirst(e1)
 node.add(e4)
+# node.print()
+node.removeFirst()
+node.add(e2)
+node.addFirst(e5)
+node.removeAt(1)
+node.add(e3)
+# print(node.len())
+node.removeAt(2)
 node.print()

@@ -126,3 +126,17 @@ delete:
     At k == head
     At k ==tail
     At m
+
+5<=>1<=>4<=>2<=>3
+
+Initial:
+node.next.prev = 1
+node.prev.next = 1
+node.prev = 5
+node.next = 4
+
+After:
+node.next.prev = 5
+node.prev.next = 4
+
+5<=>4
