@@ -1,0 +1,19 @@
+Queue: is a linear data structure which models real world queues by having two primary operations: enqueue and dequeue
+
+LIFO: last in, first out
+Enqueue: add data to the last of the queue (queue back) 
+Dequeue: remove (polling) data from the beginning of the queue (queue front)
+
+Application:
+    - model a real world queue like a lineup at movie theater
+    - can be used to efficiently keep track the most recenly added elements
+    - web server request management where first come first serve
+    - BFS
+
+Complexity Analysis:
+    - Enqueue -> O(1) [Add tail]
+    - Dequeue -> O(1) [Add head]
+    - Peeking -> O(1) [Queue front]
+    - Contains -> O(n)
+    - Removal -> O(n)
+    - IsEmpty -> O(1)
