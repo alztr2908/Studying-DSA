@@ -22,16 +22,28 @@ class sllQueue:
         if self.__isEmpty():
             return print("Empty queue")
         
-        return print("NOT Empty queue: {self.size}")
+        return print(f"NOT Empty queue | size: {self.size}")
     
     def peek(self):
         return print(f'Current HEAD: {self.head.value}')
-    
-    def contains(self):
-        pass
-    
-    def indexOf(self):
-        pass
+
+    def contains(self, node):
+        if node == self.head:
+            return print("Node index: 0")
+        elif node == self.tail:
+            return print(f"Node index: {self.size-1}")
+        
+        index = 0 
+        current = self.head
+
+        while current.next:
+            if node.value == current.value and node.next == current.next:
+                return print(f"Node index: {index}")
+
+            current = current.next 
+            index += 1 
+
+        return print("Node not found")  
 
     """
     Enqueue
@@ -51,7 +63,14 @@ class sllQueue:
     Dequeue
     """
     def dequeue(self):
-        pass
+        if self.__isEmpty():
+            return print(RuntimeError("Empty Queue"))
+        
+        current = self.head
+        self.head = current.next 
+
+        current.next = None
+        self.size -= 1
     
     def removal(self):
         pass
@@ -80,6 +99,15 @@ node.enqueue(e1)
 node.enqueue(e2)
 node.enqueue(e3)
 node.enqueue(e4)
+node.dequeue()
+node.dequeue()
+node.dequeue()
+node.dequeue()
+node.enqueue(e4)
+node.enqueue(e3)
+node.enqueue(e2)
+
+node.contains(e4)
 
 node.isEmpty()
 node.print()
