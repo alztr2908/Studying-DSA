@@ -72,3 +72,28 @@ Use hashtable for lookups to easily remove the node from binary heap -> O(1) sin
     13              5
 
     *update the positions if there is operation was involved.
+
+Two ways of implementation
+
+    methods
+        - isEmpty
+        - clear
+        - contains
+        - less
+        - peek
+        - setTail
+        - isMinHeapify
+
+        - add
+        - swim (minHepify)
+        - sink (revMinHeapify)
+        - swap
+
+        - poll
+        - remove
+        - removeAt
+        
+    1. tree
+        node (left,right,value)
+
+    2. array
