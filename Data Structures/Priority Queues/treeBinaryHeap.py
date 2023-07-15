@@ -112,7 +112,7 @@ class MinHeapTree:
         self.size += 1
 
     def swim(self,node):
-        if node.parent is None:
+        if node.parent is None or node.parent.value <= node.value:
             return
         
         if node.parent.value > node.value:
