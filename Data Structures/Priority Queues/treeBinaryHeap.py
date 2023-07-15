@@ -112,12 +112,11 @@ class MinHeapTree:
         self.size += 1
 
     def swim(self,node):
-        if node.parent is None or node.parent.value <= node.value:
+        if node.parent is None:
             return
         
         if node.parent.value > node.value:
             self.swap(node.parent, node)
-            print(node.parent.value)
             self.swim(node.parent)  
             
     """
@@ -132,10 +131,20 @@ class MinHeapTree:
     Print - implemented using BFS
     """
     def print(self):
-        queue = [self.root.value]
+        queue = [self.root]
         while queue:
-            print(queue[0])
-            queue.pop(0)
+            current = queue.pop(0) # dequeue 
+            print(current.value,end="->")
+            
+            # enqueue left and right children
+            if current.left is not None:
+                queue.append(current.left)
+                
+            if current.right is not None:
+                queue.append(current.right)
+        print()
+
+
 
 
 e1 = Node(1)
@@ -154,8 +163,8 @@ heap.insert(e2)
 heap.peek()
 heap.insert(e1)
 heap.peek()
-heap.insert(e4)
-heap.peek()
+# heap.insert(e4)
+# heap.peek()
 # heap.insert(e5)
 
 heap.print()
