@@ -12,7 +12,7 @@ Application:
 
 Complexity Analysis:
     - Enqueue -> O(1) [Add tail]
-    - Dequeue -> O(1) [Add head]
+    - Dequeue -> O(1) [subtract head]
     - Peeking -> O(1) [Queue front]
     - Contains -> O(n)
     - Removal -> O(n)

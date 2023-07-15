@@ -1,0 +1,74 @@
+Priority Queue (PQ):
+    - ADT that operates like a normal queue with a given order. 
+    - Priority of elements in the PQ determine the order in which elements are removed from PQ
+
+Implemented using a heap
+
+Heap: 
+    - tree-based DS that satisfies heap property
+    - heap property: if A is parent node of B then A is ordered wrt B for all nodes A and B in heap
+
+    Max heap: 
+        - largest value in root
+        - parent node always greater than child node
+    Min heap : 
+        - smallest value in root
+        - parent node is always smaller than child node 
+     
+PQ implementation
+    - Djikstra's shortest path algo
+    - huffman coding (used for lossless data compression)
+    - Best first search - A*
+    - Prim's minimum spanning tree algorithm
+
+Complexity of PQ in Binary Heap:
+    - binary heap construction -> O(n)
+    - polling -> O(log(n))
+    - peeking -> O(1)
+    - adding -> O(log(n))
+    - naive removing -> O(n) -> O(1) using hashmaps
+    - naive contains -> O(n) -> O(1) using hashmaps
+
+Binary Heap:
+    - binary heap: heap where every node has at least 0 to 2 at most
+    - complete binary tree: every level except possibly the last is completely filled and all nodes are as far left as possible
+
+    Array representation:
+    let i be the root node idx
+
+    left child index: 2i + 1
+    right child index: 2i + 2 (zero-based)
+
+Adding (always maintain heap property):
+    - put at the most left at the most bottom and perform "bubbling up" to maintain heap property 
+
+Polling (always maintain heap property):
+    - remove at the root or index 0
+    - switch the element from the most bottom left of binary heap and "bubbling down" to satisfy heap invariant (swap the smallest child to parent if equal then select left child)
+
+Removing (always maintain heap property)
+    - node that is not the root
+    - do linear search on binary heap then mark it
+    - swap to the most bottom left of binary heap
+    - removed the marked node
+    - do bubbling up if swapped node is smaller than parent to maintain heap property.
+    - do bubbling down if swapped node is larger than children to maintain heap property
+    - do nothing if it satifies the heap property
+
+Naive removing - O(n)
+Polling - O(log(n))
+
+Use hashtable for lookups to easily remove the node from binary heap -> O(1) since hashtable provides constant time lookup and update for a mapping from a key (node value) to a value (node index)
+
+ What if nodes have the same values?
+    - instead of mapping one value to one position, map one value to multiple positions
+     0 1 2 3  4 5  6
+    [2,7,2,11,7,13,2]
+
+    Node value:     Position(s)
+    2               0,2,6
+    7               1,4
+    11              3
+    13              5
+
+    *update the positions if there is operation was involved.

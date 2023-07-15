@@ -1,0 +1,85 @@
+Space Complexity:
+    - Memory occupied by algorithm to execute the program and produce an output
+    - Uses big O notation -> asymptotic
+
+Auxillary space: temporary space (excluding input size) allocated by algo to solve the problem, wrt input size.
+
+Space Complexity: auxillary space + input size
+
+Algo 1: sum of 2 nums
+fn add(n1, n2){
+    sum = n1 + n2
+    return sum
+}
+    Assumptions:
+        n1 -> 4 bytes
+        n2 -> 4 bytes
+        sum -> 4 bytes
+        aux (function call, return statement) -> 4 bytes
+        Total: 16 bytes
+
+    Even if n1 and n2 changed it is still 4 bytes. Constant space 
+
+    Algo 1 space complexity: O(1) constant time 
+
+Algo 2: sum of all elements in array 
+fn sumOfNums(arr []){
+    1. sum = 0
+    2. for(i=0 to arr.size()){
+        3. sum += arr[i]
+    }
+    4. print(sum)
+}  
+
+    Assumptions:
+        arr -> arr.size() * 4 bytes
+        sum -> 4 bytes
+        i -> 4 bytes
+        aux (init for loop, function call, print) -> 4 bytes
+    
+    Algo 2 space complexity: 4n + 12 bytes = O(n) linear time
+
+Algo 3: factorial of number(iterative)
+fn factorial(n){
+    int fact = 1;
+    for (int i = 1; i <= n ; i++){
+        fact *= 1
+    }
+
+    return fact 
+}
+
+    Assumptions:
+        fact -> 4 bytes
+        n -> 4 bytes
+        i -> 4 bytes
+        aux -> 4 bytes
+    
+    Not creating a new variable each loop but using the same variable every iteration
+
+    Algo 3 space complexity: 12 bytes + 4 bytes = 16 bytes = O(1) constant time
+
+Algo 4: factorial of number(recursive)
+fn factorial(n){
+    if n <= 1 {
+        return 1
+    } 
+
+    return (n*factorial(n-1))
+}
+
+    Assumptions:
+        call stack: fn(5) -> 5*fn(4) -> ... -> 2*fn(1)
+        *call stack is a memory space 
+        
+        Repeated on the functional call in call stack:
+        n -> 4 bytes
+        aux -> 4 bytes
+        Total -> 8 bytes
+
+    Since total is repeated per function call in call stack, total*call_stack.len()
+
+    Algo 4 space complexity: O(n) linear time 
+
+In recursive implementation, the aux space is more important because it is repeated during function call hence in recursion, its space complexity = c_input + c_aux*fn_stack.len()
+
