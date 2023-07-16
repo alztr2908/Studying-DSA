@@ -187,7 +187,7 @@ class MinHeapTree:
         if min_val.value < node.value:
             self.nodeSwap(min_val,node)
             self.sink(min_val)
-            
+
     """
     Traverse
     """
@@ -212,7 +212,9 @@ class MinHeapTree:
         print()
 
 
-
+"""
+Nodes are not reusable since only swap of values are happening in polling, hence nodes are not really deallocated 
+"""
 
 e1 = Node(1)
 e2 = Node(2)
@@ -224,18 +226,37 @@ e7 = Node(7)
 e8 = Node(8)
 
 heap = MinHeapTree()
-heap.insert(e4)
-heap.insert(e2)
-heap.insert(e5)
-heap.insert(e6)
-heap.insert(e7)
-heap.insert(e8)
+# heap.insert(e4)
+# heap.insert(e2)
+# heap.insert(e5)
+# heap.insert(e6)
+# heap.insert(e7)
+# heap.insert(e8)
+heap.insert(Node(4))
+heap.insert(Node(2))
+heap.insert(Node(5))
+heap.insert(Node(6))
+heap.insert(Node(7))
+heap.insert(Node(8))
 heap.peek()
 heap.poll()
 heap.peek()
 heap.poll()
-heap.insert(e1)
-# heap.peek()
+heap.insert(Node(1))
+heap.print()
+heap.insert(Node(2))
+heap.peek()
 
 heap.print()
 # print(heap.preorder_recursive())
+
+"""
+Future Implementations:
+    - reusable nodes (deallocate nodes at nodeSwap)
+    - removeAt(index)
+    - clear
+    - contains
+    - isMinHeap
+
+    - implement priority queue using arrays
+"""
