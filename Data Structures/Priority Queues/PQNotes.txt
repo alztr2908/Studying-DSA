@@ -83,15 +83,15 @@ Two ways of implementation
         - peek
         - setTail
         - isMinHeapify
+        - swap
 
         - add
-        - swim (minHepify)
-        - sink (revMinHeapify)
-        - swap
+        - swim (minHepify)        
 
         - poll
         - remove
         - removeAt
+        - sink (revMinHeapify)
         
     1. tree
         node (left,right,value)

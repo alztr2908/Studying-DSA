@@ -24,7 +24,7 @@ class MinHeapTree:
     # Checks if the tree is empty 
     # Time complexity: O(1)
     # Space complexity: O(1)
-    def __isEmpty(self):
+    def _isEmpty(self):
         if self.size == 0:
             return True
         
@@ -59,7 +59,7 @@ class MinHeapTree:
         elif node.parent.right == node:
             self.setTail(node.parent)
     
-    def swap(self,a,b):
+    def nodeSwap(self,a,b):
         a.value, b.value = b.value, a.value
            
     """
@@ -96,11 +96,13 @@ class MinHeapTree:
         if self.tail.left is None:
             self.tail.left = new_node
             self.tail.left.parent = self.tail
+
             # Retaining heap property
             self.swim(self.tail.left)
-        else:
+        else:  
             self.tail.right = new_node
             self.tail.right.parent = self.tail
+
             # Retaining heap property
             self.swim(self.tail.right)
 
@@ -111,17 +113,67 @@ class MinHeapTree:
         
         self.size += 1
 
+    # Traversing new node to retain heap invariant -> O(log(n))
     def swim(self,node):
         if node.parent is None:
             return
         
         if node.parent.value > node.value:
-            self.swap(node.parent, node)
+            self.nodeSwap(node.parent, node)
             self.swim(node.parent)  
             
     """
     Delete
+
+    Poll 
+        - swap self.tail child with root
+        - set self.tail.child be null
+        - if both self.tail.child is null, move self.tail to prevtail 
+        - move prevtail to prevtail.prevtail
     """
+    def poll(self):
+        if self._isEmpty():
+            return print(RuntimeError("Heap is empty"))
+        
+        if self.tail == self.root:
+            self.tail = None
+            self.root = None
+            self.size -= 1
+            return 
+        
+        if self.tail.right is not None:
+            self.nodeSwap(self.tail.right, self.root)
+            self.tail.right = None
+            self.sink(self.root)
+        
+        elif self.tail.left is not None:
+            self.nodeSwap(self.tail.left, self.root)
+            self.tail.left = None
+            self.sink(self.root)
+        
+        else:
+            self.tail = self.tail.prevTail
+            self.poll()
+            self.size += 1
+        
+        self.size -= 1
+    
+    def sink(self,node):
+        if node is None or node.left is None:
+            return
+
+        min_val = node.left
+
+        if min_val.value is not None and min_val.value > node.right.value:
+            min_val = node.right
+        
+        if min_val.value < node.value:
+            self.nodeSwap(min_val,node)
+            self.sink(min_val)
+
+
+
+        
 
     """
     Traverse
@@ -158,12 +210,15 @@ e8 = Node(8)
 
 heap = MinHeapTree()
 heap.insert(e4)
-heap.peek()
 heap.insert(e2)
-heap.peek()
 heap.insert(e1)
+# heap.insert(e5)
+# heap.insert(e6)
+# heap.insert(e7)
+# heap.insert(e8)
 heap.peek()
-heap.insert(e5)
+heap.poll()
+heap.peek()
 # heap.peek()
 
 heap.print()
