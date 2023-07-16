@@ -1,3 +1,8 @@
+"""
+Recommendations:
+    - create an array implementation of queue
+"""
+
 class Node:
     def __init__(self, value):
         self.value = value
@@ -111,3 +116,4 @@ node.contains(e4)
 
 node.isEmpty()
 node.print()
+
