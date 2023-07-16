@@ -82,8 +82,8 @@ Two ways of implementation
         - less
         - peek
         - setTail
-        - isMinHeapify
         - swap
+        - isMinHeapify
 
         - add
         - swim (minHepify)        

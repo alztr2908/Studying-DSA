@@ -34,6 +34,9 @@ class MinHeapTree:
     #     pass
 
     def peek(self):
+        if self.root is None:
+            return print(RuntimeError("Heap is empty"))
+
         return print(f'Root of tree: {self.root.value}')
     
     def setTail(self, node):
@@ -92,13 +95,16 @@ class MinHeapTree:
             self.root = self.tail = new_node
             self.size += 1
             return
-        
+        # print(f'root before: {self.root.value}')
+        # print(f'tail before: {self.tail.value}')
+
         if self.tail.left is None:
             self.tail.left = new_node
             self.tail.left.parent = self.tail
 
             # Retaining heap property
             self.swim(self.tail.left)
+
         else:  
             self.tail.right = new_node
             self.tail.right.parent = self.tail
@@ -110,6 +116,11 @@ class MinHeapTree:
             currentTail = self.tail
             self.setTail(self.tail)
             self.tail.prevTail = currentTail
+        
+        # print(f'root after: {self.root.value}')
+        # print(f'tail after: {self.tail.value}')
+        # if self.tail.prevTail:
+        #     print(f'prevTail after: {self.tail.prevTail.value}')
         
         self.size += 1
 
@@ -134,8 +145,14 @@ class MinHeapTree:
     def poll(self):
         if self._isEmpty():
             return print(RuntimeError("Heap is empty"))
-        
-        if self.tail == self.root:
+
+        # print(f'hi: {self.tail.value}')
+        # print(f'hello: {self.root.value}')
+
+        # If node_length < 3 
+        # self.tail == self.root only will cause an error
+        # check if root still has children
+        if self.tail == self.root and self.tail.left is None:
             self.tail = None
             self.root = None
             self.size -= 1
@@ -164,17 +181,13 @@ class MinHeapTree:
 
         min_val = node.left
 
-        if min_val.value is not None and min_val.value > node.right.value:
+        if node.right is not None and min_val.value > node.right.value:
             min_val = node.right
         
         if min_val.value < node.value:
             self.nodeSwap(min_val,node)
             self.sink(min_val)
-
-
-
-        
-
+            
     """
     Traverse
     """
@@ -184,6 +197,8 @@ class MinHeapTree:
     """
     def print(self):
         queue = [self.root]
+        if queue[0] is None:
+            queue.pop()
         while queue:
             current = queue.pop(0) # dequeue 
             print(current.value,end="->")
@@ -211,14 +226,15 @@ e8 = Node(8)
 heap = MinHeapTree()
 heap.insert(e4)
 heap.insert(e2)
-heap.insert(e1)
-# heap.insert(e5)
-# heap.insert(e6)
-# heap.insert(e7)
-# heap.insert(e8)
+heap.insert(e5)
+heap.insert(e6)
+heap.insert(e7)
+heap.insert(e8)
 heap.peek()
 heap.poll()
 heap.peek()
+heap.poll()
+heap.insert(e1)
 # heap.peek()
 
 heap.print()
