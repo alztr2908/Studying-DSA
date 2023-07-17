@@ -1,9 +1,9 @@
 # My own implementation 
+# Time complexity = O(n)
+# Space complexity = O(1) 
 def romanToInt_me(s: str) -> int:
     s += '\0'
-    print(s, end=": ")
     romanDict = {"I": 1, "V": 5, "X":10, "L":50, "C":100 ,"D":500 ,"M":1000, "\0": 0}
-
     flag = 0
     res = 0
 
@@ -11,10 +11,7 @@ def romanToInt_me(s: str) -> int:
         if flag == 1:
             flag = 0
             continue
-        # print(res)
-        # print(romanDict[s[i]])
-        # print(romanDict[s[i+1]])
-        # print()
+
         # Null character was added to make this valid until (len(s)-1)th iteration
         if romanDict[s[i]] < romanDict[s[i+1]]:
             res += romanDict[s[i+1]] - romanDict[s[i]]
@@ -24,17 +21,56 @@ def romanToInt_me(s: str) -> int:
          
     return res
 
-print(romanToInt_me("MCMXCIV"))
-print(romanToInt_me("III"))
-print(romanToInt_me("LVIII"))
-# flag = 0
-# for i in range(5):
-#     if flag == 1:
-#         flag = 0
-#         continue
-#     if i == 1:
-#         flag = 1
-#     print(i)
+def romanToInt_leetcode(s: str) -> int:
+    translations = {
+        "I": 1,
+        "V": 5,
+        "X": 10,
+        "L": 50,
+        "C": 100,
+        "D": 500,
+        "M": 1000
+    }
+    number = 0
+    s = s.replace("IV", "IIII").replace("IX", "VIIII")
+    s = s.replace("XL", "XXXX").replace("XC", "LXXXX")
+    s = s.replace("CD", "CCCC").replace("CM", "DCCCC")
+    for char in s:
+        number += translations[char]
+    return number
+
+def romanToInt_leetcodeFastest(s: str) -> int:
+    Num = 0
+    Roman = {
+        'I' : 1,
+        'V' : 5,
+        'X' : 10,
+        'L' : 50,
+        'C' : 100,
+        'D' : 500,
+        'M' : 1000,
+        }
+    Prev = 0
+    for letter in s:
+        Next = Roman[letter]
+        if Prev >= Next:
+            Num += Prev
+        else:
+            Num -= Prev
+        Prev = Next
+        print(Num)
+    Num += Next
+
+    return Num
+# print(romanToInt_me("MCMXCIV"))
+# print(romanToInt_me("III"))
+# print(romanToInt_me("LVIII"))
+# print(romanToInt_leetcode("MCMXCIV"))
+# print(romanToInt_leetcode("III"))
+# print(romanToInt_leetcode("LVIII"))
+print(romanToInt_leetcodeFastest("MCMXCIV"))
+print(romanToInt_leetcodeFastest("III"))
+print(romanToInt_leetcodeFastest("LVIII"))
 
 """
 s = MCMXCIV
@@ -84,4 +120,8 @@ flag = 0
 continue
 
 """
+"""
+Difference between my implementation vs their implementation:
 
+- Hashmap calls uses extra memory, use temp variables
+"""
