@@ -1,1 +1,15 @@
 Bubble Sort
+    for i in 0..nums:
+        for j in 0..len(nums)-i-1:
+            swap(nums[j], nums[j+1]) if nums[j] > n
+    
+    second loop has a dynamic range of len(nums)-i-1: 
+        minus i because at the end of every iteration, 
+        the last place of nums is already sorted so no
+        need to access it
+
+        minus 1 because we are comparing nums[j] and nums[j+1]
+        if there is no minus 1 there then it will result to index 
+        out of bounds when i = len(nums)
+
+Insertion sort
