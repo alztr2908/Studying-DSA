@@ -11,7 +11,7 @@ return True immediately. If not, then False
 """
 
 
-def containsDuplicate(nums) -> bool:
+def containsDuplicate_me(nums) -> bool:
     duplicates = dict()
 
     for i in range(len(nums)):
@@ -22,5 +22,24 @@ def containsDuplicate(nums) -> bool:
     return False
 
 
+"""
+Sample 227ms submission in leetcode
+I tried this but it's not really 227ms but 500+ ms
+"""
+
+
+def containsDuplicate_leetCode(nums) -> bool:
+    dupl = set()
+
+    for num in nums:
+        if num in dupl:
+            return True
+
+        dupl.add(num)
+
+    return False
+
+
 nums = [1, 2, 3, 4]
-print(containsDuplicate(nums))
+print(containsDuplicate_me(nums))
+print(containsDuplicate_leetCode(nums))
