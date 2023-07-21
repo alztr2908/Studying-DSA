@@ -2,7 +2,7 @@ def insertionSort(nums):
     for i in range(0, len(nums)-1):
         j = i
 
-        while nums[j] < nums[j+1] and j >= 0:
+        while nums[j] > nums[j+1] and j >= 0:
             temp = nums[j]
             nums[j] = nums[j+1]
             nums[j+1] = temp
