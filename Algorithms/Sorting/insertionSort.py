@@ -1,3 +1,9 @@
+"""
+Time complexity: O(n^2)
+Space complexity: O(n)
+"""
+
+
 def insertionSort(nums):
     for i in range(0, len(nums)-1):
         j = i

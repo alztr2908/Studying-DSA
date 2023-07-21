@@ -24,3 +24,15 @@ Insertion sort
     j+1 will be out of bounds
 
     j>=0 on the second loop because nums[-i] is not valid
+
+Selection sort
+    min_value = inf
+    index_min = 0
+
+    for i in 0..nums:
+        for j in i..nums:
+            if nums[j] < min_value:
+                min_value = nums[j]
+                index_min = 0
+
+            swap(nums[index_min],nums[j])
