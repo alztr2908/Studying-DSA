@@ -13,3 +13,14 @@ Bubble Sort
         out of bounds when i = len(nums)
 
 Insertion sort
+    for i in 0..nums_length - 1:
+        j = i 
+
+        while nums[j] > nums[j+1] and j >= 0:
+            swap(nums[j], nums[j+1])
+            j-=1
+    
+    first loop is not until nums_length because when i = nums_length,
+    j+1 will be out of bounds
+
+    j>=0 on the second loop because nums[-i] is not valid
