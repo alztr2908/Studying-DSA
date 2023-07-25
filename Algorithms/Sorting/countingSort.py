@@ -26,6 +26,8 @@ is between the range 1 to 10K and the data is 10, 5, 10K, 5K.
 - Counting sort uses partial hashing to count the occurrence of the data object in O(1).
 """
 
+# Code below only considers positive values, one of the assumption of counting sort
+
 
 def countingSort(arr):
     n = len(arr)
@@ -57,5 +59,5 @@ def countingSort(arr):
     return sorted_arr
 
 
-arr = [1, 0, 3, 1, 3, 1]
+arr = [1, 0, 3, 1, 3, 32]
 print(countingSort(arr))
