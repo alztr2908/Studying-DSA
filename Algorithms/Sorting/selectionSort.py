@@ -1,3 +1,9 @@
+"""
+Time complexity: O(n^2)
+Space complexity: O(n)
+"""
+
+
 def selectionSort(nums):
     for i in range(len(nums)):
         min_value = float('inf')
