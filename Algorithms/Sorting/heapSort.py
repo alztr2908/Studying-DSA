@@ -9,7 +9,6 @@ def buildMaxHeap(arr):
     n = len(arr)-1
     for i in range(n//2, -1, -1):
         heapify(arr, i)
-        # print(arr)
 
 
 def heapify(arr, p):
@@ -25,23 +24,27 @@ def heapify(arr, p):
     else:
         max = p
 
-    if right <= len(arr) - 1 and arr[right] > arr[p]:
+    if right <= len(arr) - 1 and arr[right] > arr[max]:
         max = right
 
-    print(max)
-    print(p)
-    print()
+    # print(max)
+    # print(p)
+    # print()
 
     if max != p:
-        print("hello")
-        print(arr)
-
-        print(arr)
+        arr[max], arr[p] = arr[p], arr[max]
         heapify(arr, max)
 
 
 def heapSort(arr):
     buildMaxHeap(arr)
+    print(arr)
+    n = len(arr)-1
+
+    while n >= 0:
+        arr[n], arr[0] = arr[0], arr[n]
+        n -= 1
+        heapify(arr[:n], 0)
     print(arr)
 
 
