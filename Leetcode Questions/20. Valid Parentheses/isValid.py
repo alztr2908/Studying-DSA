@@ -7,7 +7,7 @@ Solution
 """
 
 
-def isValid(s: str) -> bool:
+def isValid_me(s: str) -> bool:
     stack = []
     leftSide = {")": "(", "}": "{", "]": "["}
     rightSide = {"(": ")", "{": "}", "[": "]"}
@@ -28,6 +28,21 @@ def isValid(s: str) -> bool:
         return False
 
     return True
+
+
+def isValid(s: str) -> bool:
+    hash_map = {'{': '}', '(': ')', '[': ']'}
+    stack = []
+    if len(s) >= 1 and len(s) <= pow(10, 4):
+        for i in s:
+            if i in hash_map.keys():
+                stack.append(i)
+            elif len(stack) != 0 and i == hash_map[stack[-1]]:
+                stack.pop()
+            elif i in hash_map.values():
+                return False
+
+    return not bool(stack)
 
 
 s1 = "()[]{}"
