@@ -4,22 +4,26 @@ source: https://github.com/williamfiset/DEPRECATED-data-structures/blob/master/c
 """
 
 # Internal node class to represent data
+
+
 class Node:
-    def __init__(self,value):
+    def __init__(self, value):
         self.value = value
         self.prev = None
         self.next = None
 
+
 class DoublyLinkedList:
-    def __init__(self,head=None):
+    def __init__(self, head=None):
         self.head = head
         self.tail = None
         self.size = 0
-    
+
     """
     Helper
     """
     # Empty this linked list, O(n)
+
     def clear(self):
         current = self.head
         while current != None:
@@ -61,16 +65,17 @@ class DoublyLinkedList:
                     return print(f'Node index of {new_node.value}: {index}')
                 current = current.next
                 index += 1
-        
+
         return print(f'No index found')
 
     """
     Append
     """
     # Add an element to the tail of the linked list, O(1)
+
     def add(self, new_node):
         self.addLast(new_node)
-    
+
     # Add a node to the tail of the linked list, O(1)
     def addLast(self, new_node):
         if self.isEmpty():
@@ -79,7 +84,7 @@ class DoublyLinkedList:
             self.tail.next = new_node
             new_node.prev = self.tail
             self.tail = new_node
-        
+
         self.size += 1
 
     # Add an element to the beginning of this linked list, O(1)
@@ -90,23 +95,24 @@ class DoublyLinkedList:
             self.head.prev = new_node
             new_node.next = self.head
             self.head = new_node
-        
+
         self.size += 1
-        
+
     """
     Delete
     """
     # Remove the first value at the head of the linked list, O(1)
+
     def removeFirst(self):
         # Can't remove data from an empty list
         if self.isEmpty():
             print(RuntimeError("Empty List"))
             return
-        
+
         # Extract the data at the head and move
         # the head pointer forwards one node
         value = self.head.value
-        self.head = self.head.next 
+        self.head = self.head.next
         self.size -= 1
 
         # If the list is empty set the tail to null
@@ -115,10 +121,10 @@ class DoublyLinkedList:
         # Do a memory cleanup of the previous node
         else:
             self.head.prev = None
-        
+
         # Return the data that was at the first node we just removed
         print(f'removed {value}')
-        return 
+        return
 
     # Remove the last value at the tail of the linked list, O(1)
     def removeLast(self):
@@ -126,7 +132,7 @@ class DoublyLinkedList:
         if self.isEmpty():
             print(RuntimeError("Empty List"))
             return
-        
+
         # Extract the data at the tail and move
         # the tail pointer backwards one node
         value = self.tail.value
@@ -139,7 +145,7 @@ class DoublyLinkedList:
         # Do a memory clean of the node that was just removed
         else:
             self.tail.next = None
-        
+
         # Return the data that was in the last node we just removed
         return
 
@@ -154,8 +160,8 @@ class DoublyLinkedList:
             return
         if node.next == None:
             self.removeLast()
-            return 
-        
+            return
+
         # 1<=>2<=>3 to 1<=>3
         # Make the pointers of adjacent nodes skip over 'node'
         node.next.prev = node.prev
@@ -171,15 +177,15 @@ class DoublyLinkedList:
 
         # Return the data in the node we just removed
         print(f'removed {value}')
-        return 
+        return
 
     # Remove a node at a particular index, O(n)
-    def removeAt(self,k=0):
+    def removeAt(self, k=0):
         # Make sure the index provided is valid
         if (k < 0 or k >= self.size):
             print(IndexError(f'Index {k} is out of bounds!'))
-            return 
-        
+            return
+
         # Search from the front of the list
         if (k < self.size // 2):
             current = self.head
@@ -193,14 +199,14 @@ class DoublyLinkedList:
             while curr_idx != k:
                 current = current.prev
                 curr_idx -= 1
-        
+
         self.__remove(current)
         return
 
     # Remove a particular value in the linked list, O(n)
     def remove(self, new_node):
         current = self.head
-        
+
         # Support searching for null
         if new_node == None:
             while current != None:
@@ -208,29 +214,30 @@ class DoublyLinkedList:
                     self.__remove(current)
                     return print(f'Removed {current.value}')
                 current = current.next
-        # Search for non null object    
+        # Search for non null object
         else:
             while current != None:
                 if new_node.value == current.value and new_node.prev == current.prev and new_node.next == current.next:
                     self.__remove(current)
                     return print(f'Removed {current.value}')
                 current = current.next
-        
+
         return print(f'Nothing to remove')
 
     """
     Print
     """
+
     def printHEAD(self):
         if not self.head:
             return print(ValueError("No element in HEAD"))
-        
+
         print(f'HEAD: {self.head.value} | index: 0')
 
     def printTAIL(self):
         if not self.head:
             return print(ValueError("No element in TAIL"))
-        
+
         print(f'TAIL: {self.tail.value} | index: {self.size-1}')
 
     def print(self):
@@ -241,15 +248,15 @@ class DoublyLinkedList:
         print("Print from HEAD to TAIL")
         current = self.head
         while current:
-            print(f'{current.value}',end="<=>")
+            print(f'{current.value}', end="<=>")
             current = current.next
         print("None")
-        
+
         # Print in descending order
         print("Print from TAIL to HEAD")
         current = self.tail
         while current:
-            print(f'{current.value}',end="<=>")
+            print(f'{current.value}', end="<=>")
             current = current.prev
         print("None")
         print()

@@ -22,8 +22,12 @@ def isPalindrome_me(s: str) -> bool:
 
     return True
 
+# Slower in time complexity since it is somehow
+# O(n^2) if there is a lot of non-alphanumeric in string
+# Faster in space complexity
 
-def isPalindrome(s):
+
+def isPalindrome_leetcode(s):
     l, r = 0, len(s)-1
     while l < r:
         while l < r and not s[l].isalnum():

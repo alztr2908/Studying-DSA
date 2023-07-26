@@ -30,7 +30,7 @@ def isValid_me(s: str) -> bool:
     return True
 
 
-def isValid(s: str) -> bool:
+def isValid_leetcode(s: str) -> bool:
     hash_map = {'{': '}', '(': ')', '[': ']'}
     stack = []
     if len(s) >= 1 and len(s) <= pow(10, 4):

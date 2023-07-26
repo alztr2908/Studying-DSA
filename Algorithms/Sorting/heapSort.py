@@ -4,8 +4,14 @@
 3. Place item in sorted partition
 """
 
+"""
+Time Complexity: O(N log N)
+Auxiliary Space: O(log n), due to the recursive call stack. However, auxiliary space can be O(1) for iterative implementation.
+"""
 
 # Build a heap
+
+
 def buildMaxHeap(arr):
     n = len(arr)
     for i in range(n//2-1, -1, -1):
