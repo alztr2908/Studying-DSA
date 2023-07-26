@@ -21,6 +21,9 @@ class UnionFind:
 
         self.size = self.numComponents = size
 
+        self.sz = [0]*size
+        self.id = [0]*size
+
         for i in range(size):
             self.id[i] = i  # link to itself (self root)
             self.sz[i] = 1  # each component is originally of size one
@@ -29,7 +32,7 @@ class UnionFind:
     def find(self, p):
         # Find root of component/set
         root = p
-        while (root != id[root]):
+        while (root != self.id[root]):
             root = self.id[root]
 
         # Compress the path leading back to the root.
@@ -40,7 +43,8 @@ class UnionFind:
             self.id[p] = root
             p = next
 
-        return print(f"Root of {p}: {root}")
+        print(f"Root of {p}: {root}")
+        return root
 
     # This is an alternative recursive formulation for the find method
     # def find(self, p) {
@@ -59,7 +63,7 @@ class UnionFind:
         return self.sz[self.find(p)]
 
     # Return the number of elements in this UnionFind/Disjoint set
-    def size(self):
+    def sizeUnionFind(self):
         return self.size
 
     # Returns the number of remaining components/sets
@@ -88,4 +92,8 @@ class UnionFind:
 
 node = UnionFind()
 node.UnionFind(10)
-print(node.size())
+print(node.sizeUnionFind())
+node.find(2)
+node.unify(0, 1)
+node.unify(0, 1)
+print(node.connected(0, 1))
