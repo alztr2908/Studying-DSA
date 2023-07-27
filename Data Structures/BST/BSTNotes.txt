@@ -1,0 +1,85 @@
+Tree: undirected graph which satisfies any of the following definitions:
+    - acyclic connected graph
+    - connected graph with N nodes and N-1 edges
+    - graph which two vertices are connected by exactly one path
+    - Rooted tree: topmost node called root
+    
+    - Child node: node extending from another node
+    - Parent: inverse of child node 
+
+    - Root node: node with no parent node
+    - Leaf Node: node with no child node
+
+    - Subtree: another tree entirely contained within another. Usually denoted using triangles. Subtrees may consist of a single node
+
+Binary Tree - a tree for which every node has at most two child nodes.
+
+Binary search tree - binary tree that satisfies BST invariant (left subtree has smaller elements and right subtree has large elements)
+
+Applications of Binary Trees:
+    - Binary Search Trees
+        - Implementation of some map and set ADT
+        - Red Black Trees
+        - AVL Trees
+    - Used in implementation of binary heaps
+    - Syntax trees (used by compiler and calculators)
+
+Complexity of BST
+    - Insert: O(log(n)) at average, O(n) at worst
+    - Delete: O(log(n)) at average, O(n) at worst
+    - Remove: O(log(n)) at average, O(n) at worst
+    - Search: O(log(n)) at average, O(n) at worst
+
+BST Invariant: left subtree has smaller elements and right subtree has larger elements
+
+BST Insertion:
+    - Recurse down left subtree (< case)
+    - Recurse down right subtree (> case)
+    - Handle finding a duplicate value (= case)
+    - Create a new node (found a null leaf)
+
+    - Insertion take O(log(n)) at average, O(n) at worst if elements are always greater then it will just be an ascending array or BST only has right subtrees (same if always less than)
+
+BST Removal:
+    - Two step process
+        1. Find the element we wish to remove (if it exists)
+        2. Replace the node we want to remove with its successor (if any) to maintain the BST invariant
+
+    - Find phase: 4 cases
+        1. Hit a null node at which the value DNE within BST
+        2. Comparator value equal to 0 (found)
+        3. Comparator value less than 0 (the value if it exists, is in the left subtree)
+        4. Comparator value greater than 0 (the value, if it exists, is in the right subtree)
+    
+    - Remove phase: 3 cases
+        1. Node to remove is a leaf node
+            - Remove only 
+        2. Node to remove has a right/left subtree but no left subtree
+            - successor of removed node will be the root node of the left/right subtree
+        3. Node to remove has a both a left subtree and a right subtree
+            - smallest value in right subtree (farthest left in right subtree) 
+            - or
+            - largest value in left subtree
+            (farghest right in left subtree)
+
+Traversals
+    1. Preorder traversal
+        if node == null return
+        print(node.val)
+        preorder(node.right)
+        preorder(node.left)
+
+    2. inorder traversal (increasing order)
+        if node == null return
+        inorder(node.left)
+        print(node.val)
+        inorder(node.right)
+    
+    3. postorder traversal
+        if node == null return
+        postorder(node.left)
+        postorder(node.right)
+        print(node.value)
+    
+    4. level order traversal
+        - Breadth First Search (BFS) using queue implementation
