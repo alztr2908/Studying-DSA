@@ -33,12 +33,12 @@ def threeSum(nums):
             twoSum[num].append(num)
         elif -num in twoSum:
             twoSum[-num].append(num)
+        else:
+            twoSum[num] = []
         if -(num + 3) in twoSum:
             twoSum[-(num + 3)].append(num)
         elif -(num - 3) in twoSum:
             twoSum[-(num - 3)].append(num)
-
-        twoSum[num] = []
 
     print(twoSum)
     ans_container = []
@@ -52,9 +52,9 @@ def threeSum(nums):
                 ans.sort()
                 if key == 0 and val == 0 and numFreq[0] < 3:
                     continue
-                if key+val+num == 0 and ans not in ans_container:
+                if sum(ans) == 0 and ans not in ans_container:
                     ans_container.append(ans)
-
+    ans_container.sort()
     return ans_container
 
 
@@ -66,3 +66,11 @@ nums = [3, 0, -2, -1, 1, 2]
 nums = [-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]
 print(nums)
 print(threeSum(nums))
+
+
+"""
+[-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]
+
+-1: [1]
+0: []
+"""
