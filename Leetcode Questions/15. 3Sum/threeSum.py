@@ -27,20 +27,19 @@ def threeSum(nums):
     # Handles zero edge-case since i can't think of any solution
     numFreq = {0: 0}
     for num in nums:
-        print(num)
         if num == 0:
             numFreq[num] += 1
         if num in twoSum:
             twoSum[num].append(num)
         elif -num in twoSum:
             twoSum[-num].append(num)
-        else:
-            twoSum[num] = []
-
         if -(num + 3) in twoSum:
             twoSum[-(num + 3)].append(num)
         elif -(num - 3) in twoSum:
             twoSum[-(num - 3)].append(num)
+
+        twoSum[num] = []
+
     print(twoSum)
     ans_container = []
     # If value is not -inf, then traverse to nums to find 0 or same magnitude
@@ -49,13 +48,12 @@ def threeSum(nums):
             continue
         for val in value:
             for num in nums:
+                ans = [key, val, num]
+                ans.sort()
                 if key == 0 and val == 0 and numFreq[0] < 3:
                     continue
-                if key+val+num == 0:
-                    ans = [key, val, num]
-                    # allows no duplication of elements
-                    if ans not in ans_container:
-                        ans_container.append(ans)
+                if key+val+num == 0 and ans not in ans_container:
+                    ans_container.append(ans)
 
     return ans_container
 
@@ -65,5 +63,6 @@ nums = [-1, 0, 1]
 nums = [5, -2, -3]
 nums = [5, -2, -3, 7, -4]
 nums = [3, 0, -2, -1, 1, 2]
-
+nums = [-1, 0, 1, 2, -1, -4, -2, -3, 3, 0, 4]
+print(nums)
 print(threeSum(nums))
