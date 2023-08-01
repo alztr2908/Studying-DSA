@@ -53,3 +53,8 @@ tokens2 = ["3", "11", "+", "5", "-"]
 print(evalRPN(tokens))
 print(evalRPN(tokens2))
 # print(int(6/-132))
+
+"""
+Wrong solution, result should be inside the stack as an element 
+so that flags are not needed, it just increases the complexity.
+"""
