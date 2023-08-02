@@ -1,32 +1,32 @@
+"""
+Res should always be on the stack and be the last element 
+result should always be appended on the stack
+
+If element is an operation then get the top 2 elements in stack then calculate it
+based on the operation type, store it then append that to stack
+
+stack will always have one element that represents the value so far then return it
+hence stack[0]
+"""
+
+
 def evalRPN(tokens: list[str]) -> int:
     stack = []
-    first_op_flag = 1  # since stack takes two elements on first operation
-    postfix_flag = 0
     op = ["+", "-", "*", "/"]
+
+    # if len(tokens) == 1:
+    #     return int(tokens[0])
+
     for el in tokens:
-        # print(stack)
         if el in op:
-            if first_op_flag:
-                # b comes first because it was the last element
-                b = int(stack.pop())
-                a = int(stack.pop())
-                res = calc(a, b, el)
-                first_op_flag = 0
-            else:
-                b = int(stack.pop())
-                if postfix_flag:
-                    res = calc(res, b, el)
-                    postfix_flag = 0
-                else:
-                    res = calc(b, res, el)
-            if len(stack) == 0:
-                postfix_flag = 1
-
-            # print(res)
+            second_el = int(stack.pop())
+            first_el = int(stack.pop())
+            res = calc(first_el, second_el, el)
+            stack.append(res)
         else:
-            stack.append(el)
+            stack.append(int(el))
 
-    return res
+    return stack[0]
 
 
 def calc(a, b, op):
@@ -49,7 +49,8 @@ res = 12*-11 = -132
 res = 6/-132
 """
 
-tokens2 = ["3", "11", "+", "5", "-"]
+tokens2 = ["3", "11", "+", "5", "4", "-", "-"]
+tokens2 = ["3"]
 print(evalRPN(tokens))
 print(evalRPN(tokens2))
 # print(int(6/-132))
