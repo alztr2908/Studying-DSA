@@ -49,6 +49,7 @@ def searchMatrix(nums, target) -> bool:
     leftArr = 0
     rightArr = rows-1
 
+    # Find the array with the target element in the matrix
     while leftArr <= rightArr:
         midArr = (rightArr + leftArr)//2
         # Search the first and last element of middle array
@@ -62,16 +63,21 @@ def searchMatrix(nums, target) -> bool:
         else:  # target is already in that row
             break
 
+    return binarySearch(matrix[midArr])
+
+
+def binarySearch(nums) -> bool:
     l = 0
-    r = len(matrix[midArr])-1
+    r = len(nums)-1
+    print(nums)
     # print(matrix[midArr])
 
     while l <= r:
         mid = (l + r)//2
         # print(2, mid)
-        if matrix[midArr][mid] > target:
+        if nums[mid] > target:
             r = mid - 1
-        elif matrix[midArr][mid] < target:
+        elif nums[mid] < target:
             l = mid + 1
         else:
             return True
