@@ -113,6 +113,12 @@ the requirement into the following generalized form:
 Minimize k , s.t. condition(k) is True
 
 The following code is the most generalized binary search template:
+
+At usual binary search, finding mid is commonly (right - left)//2 only.
+But this only works if the left pointer is zero. Thus,
+
+mid = (right - left)//2 + left normalizes if left pointer is non-zero or 
+the minimum number in search space
 """
 
 
