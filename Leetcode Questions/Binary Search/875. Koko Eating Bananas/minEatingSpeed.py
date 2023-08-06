@@ -2,10 +2,9 @@ def minEatingSpeed(piles, h) -> int:
     def rateOfEating(val):
         rate = 0
         for p in piles:
-            if val > p:
+            rate += p//val
+            if (p % val != 0):
                 rate += 1
-            elif val <= p:
-                rate += p//val+1
         # print(f'{val} and {rate}: {rate<=h}')
         return rate <= h
 
