@@ -135,3 +135,14 @@ def binary_search(search_space) -> int:
         else:
             left = mid + 1
     return left
+
+
+"""
+Excellent work! Many people think sorted array is a must to apply binary search, 
+which is not 100% correct. In some cases, there is no such array, or the array is not 
+sorted, or the element are not even comparable! 
+
+What makes binary search work is that there exists a function that can map elements 
+in left half to True, and the other half to False, or vice versa. If we can find such 
+a function, we can apply bs to find the boundary (lower_bound for example).
+"""
