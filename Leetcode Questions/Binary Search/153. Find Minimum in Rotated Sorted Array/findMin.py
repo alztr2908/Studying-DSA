@@ -29,7 +29,7 @@ print(findMin(nums))
  L     M       R
  [6,7,0]
  [0]  
-if nums[mid] >= nums[left]
+if nums[mid] > nums[right]
     search right side
 else:
     search left side
